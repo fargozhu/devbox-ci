@@ -1,6 +1,10 @@
 {
-  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.17.1/.schema/devbox.schema.json",
-  "packages": ["go@1.25.8"],
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.1/.schema/devbox.schema.json",
+  "packages": [
+    "go@1.25.8",
+    "pack@latest",
+    "colima@latest"
+  ],
   "env": {
     "GOPATH": "$HOME/go/",
     "PATH":   "$PATH:$HOME/go/bin"
@@ -10,8 +14,16 @@
       "echo 'Welcome to devbox!' > /dev/null"
     ],
     "scripts": {
-      "test": [
+      "check": [
+        "echo Checking..."
+      ],
+      "run": [
+        "echo Running...",
         "go run main.go"
+      ],
+      "build": [
+        "echo Building...",
+        "pack build hello --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base"
       ]
     }
   }
