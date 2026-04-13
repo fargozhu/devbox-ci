@@ -22,12 +22,18 @@ jobs:
         run: devbox run test
 
   package:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.14.0
+        with:
+          enable-cache: 'true'
 
       - name: Build with paketo
         run: devbox run build
