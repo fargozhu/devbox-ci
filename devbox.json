@@ -20,14 +20,18 @@
       "test": [
         "echo Testing..."
       ],
-      "run": [
+      "run-local": [
         "echo Running...",
         "go run main.go"
       ],
       "build": [
         "echo Building...",
         "pack build docker.io/fargozhu/hello:latest --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base"
+      ],
+      "deploy": [
+        "echo Deploy..."
       ]
+
     }
   }
 }

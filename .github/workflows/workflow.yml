@@ -21,7 +21,11 @@ jobs:
       - name: Run tests cases
         run: devbox run test
 
-  package:
+      - name: Run application locally
+        run: devbox run run-local
+
+
+  publish:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -35,8 +39,22 @@ jobs:
         with:
           enable-cache: 'true'
 
-      - name: Build with paketo
+      - name: Build and Push with paketo
         run: devbox run build
 
-      - name: Run application
-        run: devbox run run
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.14.0
+        with:
+          enable-cache: 'true'
+
+      - name: Deploy application
+        run: devbox run deploy
