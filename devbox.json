@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.1/.schema/devbox.schema.json",
   "packages": [
-    "go@1.25.6",
     "pack@latest",
-    "colima@latest"
+    "colima@latest",
+    "go@1.24.12"
   ],
   "env": {
     "GOPATH": "$HOME/go/",
