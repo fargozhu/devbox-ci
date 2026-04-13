@@ -2,7 +2,7 @@ name: workflow.yml
 on: push
 
 jobs:
-  flow:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,8 +21,16 @@ jobs:
       - name: Run tests cases
         run: devbox run test
 
-      - name: Run application
-        run: devbox run run
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Build with paketo
         run: devbox run build
+
+      - name: Run application
+        run: devbox run run
