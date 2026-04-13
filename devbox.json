@@ -17,6 +17,9 @@
       "check": [
         "echo Checking..."
       ],
+      "test": [
+        "echo Testing..."
+      ],
       "run": [
         "echo Running...",
         "go run main.go"

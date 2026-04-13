@@ -2,7 +2,7 @@ name: workflow.yml
 on: push
 
 jobs:
-  test:
+  flow:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,8 +15,14 @@ jobs:
         with:
           enable-cache: 'true'
 
-      - name: Run checks
+      - name: Run some of the checks
         run: devbox run check
 
-      - name: Run a script called test
+      - name: Run tests cases
         run: devbox run test
+
+      - name: Run application
+        run: devbox run run
+
+      - name: Build with paketo
+        run: devbox run build
