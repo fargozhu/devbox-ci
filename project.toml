@@ -4,4 +4,4 @@ schema-version="0.2"
 
 [[ io.buildpacks.build.env ]]
 name="BP_GO_VERSION"
-value="1.25.8"
+value="1.25.6"
