@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	expected := "go1.24.13"
+	expected := "go1.25.0"
 	goVersion := runtime.Version()
 	log.WithFields(log.Fields{
 		"expected": expected,
