@@ -3,7 +3,8 @@
   "packages": [
     "pack@latest",
     "colima@latest",
-    "go@1.24.13"
+    "go@1.24.13",
+    "cdxgen@latest"
   ],
   "env": {
     "GOPATH": "$HOME/go/",
@@ -24,9 +25,9 @@
         "echo Running...",
         "go run main.go"
       ],
-      "build": [
+      "build-publish": [
         "echo Building...",
-//        "pack build ttl.sh/fargozhu-app:1h --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base",
+        //        "pack build ttl.sh/fargozhu-app:1h --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base",
         "docker build -t ttl.sh/my-app:2h .",
         "docker push ttl.sh/my-app:2h"
       ],
@@ -38,8 +39,9 @@
       ],
       "sbom": [
         "echo Generating SBOM...",
-        "pack sbom download docker.io/fargozhu/hello:latest --output-dir /tmp/sbom"
-      ]
-    }
-  }
+        "cdxgen -t go -o bom.json -p"
+        //        "pack sbom download docker.io/fargozhu/hello:latest --output-dir /tmp/sbom"
+      ],
+    },
+  },
 }

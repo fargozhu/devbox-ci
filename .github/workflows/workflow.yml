@@ -2,7 +2,7 @@ name: workflow.yml
 on: push
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,8 +25,8 @@ jobs:
         run: devbox run run-local
 
 
-  publish:
-    needs: build
+  build-publish:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,14 +39,14 @@ jobs:
         with:
           enable-cache: 'true'
 
-      - name: Build and Push with paketo
-        run: devbox run build
+      - name: Build and Push
+        run: devbox run build-publish
 
       - name: SBOM
         run: devbox run sbom
 
   deploy:
-    needs: publish
+    needs: build-publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
