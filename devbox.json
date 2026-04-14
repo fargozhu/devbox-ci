@@ -50,10 +50,13 @@
         "go run main.go"
       ],
       "build-publish": [
-        "echo Building...",
-        //        "pack build ttl.sh/fargozhu-app:1h --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base",
+        "echo Building...",        
         "docker build -t ttl.sh/my-app:2h .",
         "docker push ttl.sh/my-app:2h"
+      ],
+      "buildpack": [
+        "echo Buildpacking...",        
+        "pack build ttl.sh/fargozhu-app:1h --buildpack paketo-buildpacks/go --builder paketobuildpacks/builder-jammy-base",
       ],
       "deploy": [
         "echo Deploy..."
@@ -63,8 +66,11 @@
       ],
       "sbom": [
         "echo Generating SBOM...",
-        "cdxgen -t go -o bom.json -p"
-        //        "pack sbom download docker.io/fargozhu/hello:latest --output-dir /tmp/sbom"
+        "cdxgen -t go -o bom.json -p"        
+      ],
+      "sbom-buildpack": [
+        "pack sbom download ttl.sh/fargozhu-app:1h --output-dir /tmp/sbom",
+        "cat /tmp/sbom"
       ]
     }
   }
